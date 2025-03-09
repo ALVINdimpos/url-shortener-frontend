@@ -1,0 +1,17 @@
+services:
+  urlshortenerfn:
+    image: urlshortenerfn
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+        VITE_LOCAL_API_URL: ${VITE_LOCAL_API_URL}
+        VITE_APP_BASE_URL: ${VITE_APP_BASE_URL}
+    env_file:
+      - .env
+    environment:
+      NODE_ENV: production
+      VITE_LOCAL_API_URL: ${VITE_LOCAL_API_URL}
+      VITE_APP_BASE_URL: ${VITE_APP_BASE_URL}
+    ports:
+      - 8080:8080
