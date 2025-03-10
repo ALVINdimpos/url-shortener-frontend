@@ -1,9 +1,9 @@
-import { Link, useLocation } from 'react-router-dom';
-import { useState } from 'react';
-import { LearnMorePanel } from './LearnMorePanel';
-import { SolutionsPanel } from './SolutionsPanel';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link, useLocation } from "react-router-dom";
+import { useState } from "react";
+import { LearnMorePanel } from "./LearnMorePanel";
+import { SolutionsPanel } from "./SolutionsPanel";
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export interface NavPanelProps {
   isVisible: boolean;
@@ -34,17 +34,17 @@ const PublicNavbar = () => {
           <div className="flex justify-between items-center h-16">
             <figure className="flex-shrink-0">
               <Link to="/" className="text-2xl font-bold text-orange-700">
-                Alvin
+                Alvin's URL Shortener
               </Link>
             </figure>
 
-            {pathname.includes('auth/login') ||
-            pathname.includes('auth/signup') ? null : (
+            {pathname.includes("auth/login") ||
+            pathname.includes("auth/signup") ? null : (
               <>
                 <ul className="hidden md:flex items-center space-x-8">
                   <li
                     className="relative"
-                    onMouseEnter={() => handleMouseEnter('platform')}
+                    onMouseEnter={() => handleMouseEnter("platform")}
                   >
                     <Link to="#" className="text-gray-600 hover:text-gray-900">
                       Platform
@@ -52,13 +52,13 @@ const PublicNavbar = () => {
                   </li>
                   <li
                     className="relative"
-                    onMouseEnter={() => handleMouseEnter('solutions')}
+                    onMouseEnter={() => handleMouseEnter("solutions")}
                   >
                     <Link
                       to="#"
                       className="text-gray-600 hover:text-gray-900 flex items-center"
                     >
-                      Solutions{' '}
+                      Solutions{" "}
                       <FontAwesomeIcon
                         icon={faChevronDown}
                         className="ml-[6px] text-[12px]"
@@ -72,13 +72,13 @@ const PublicNavbar = () => {
                   </li>
                   <li
                     className="relative"
-                    onMouseEnter={() => handleMouseEnter('resources')}
+                    onMouseEnter={() => handleMouseEnter("resources")}
                   >
                     <Link
                       to="#"
                       className="text-gray-600 hover:text-gray-900 flex items-center"
                     >
-                      Resources{' '}
+                      Resources{" "}
                       <FontAwesomeIcon
                         icon={faChevronDown}
                         className="ml-[6px] text-[12px]"
@@ -107,13 +107,13 @@ const PublicNavbar = () => {
         </nav>
 
         <LearnMorePanel
-          isVisible={activePanel === 'resources'}
-          onMouseEnter={() => handleMouseEnter('resources')}
+          isVisible={activePanel === "resources"}
+          onMouseEnter={() => handleMouseEnter("resources")}
           onMouseLeave={handleMouseLeave}
         />
         <SolutionsPanel
-          isVisible={activePanel === 'solutions'}
-          onMouseEnter={() => handleMouseEnter('solutions')}
+          isVisible={activePanel === "solutions"}
+          onMouseEnter={() => handleMouseEnter("solutions")}
           onMouseLeave={handleMouseLeave}
         />
       </section>
