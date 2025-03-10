@@ -1,11 +1,10 @@
-import { useEffect } from 'react';
-import { useLazyGetCsrfTokenQuery } from '@/states/api/apiQuerySlice';
-import { Outlet, useNavigate, useSearchParams } from 'react-router-dom';
-import { setCsrfToken, setToken, setUser } from '@/states/features/userSlice';
-import { AppDispatch, RootState } from '@/states/store';
-import { useDispatch, useSelector } from 'react-redux';
-import { jwtDecode } from 'jwt-decode';
-import { IUser } from '@/types/user';
+import { useEffect } from "react";
+import { Outlet, useNavigate, useSearchParams } from "react-router-dom";
+import { setToken, setUser } from "@/states/features/userSlice";
+import { AppDispatch, RootState } from "@/states/store";
+import { useDispatch, useSelector } from "react-redux";
+import { jwtDecode } from "jwt-decode";
+import { IUser } from "@/types/user";
 
 const AuthenticatedRoutes = () => {
   // STATE VARIABLES
@@ -15,14 +14,11 @@ const AuthenticatedRoutes = () => {
   // NAVIGATION
   const navigate = useNavigate();
 
-  // INITIALIZE GET CSRF TOKEN
-  const [getCsrfToken] = useLazyGetCsrfTokenQuery();
-
   // NAVIGATION
   const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
-    const token = searchParams.get('token');
+    const token = searchParams.get("token");
     if (token) {
       const decodedToken = jwtDecode(token);
       dispatch(
@@ -32,22 +28,14 @@ const AuthenticatedRoutes = () => {
         })
       );
       dispatch(setToken(token));
-      searchParams.delete('token');
+      searchParams.delete("token");
       setSearchParams(searchParams);
     }
   }, [searchParams, dispatch, setSearchParams]);
 
   useEffect(() => {
-    getCsrfToken({})
-      .unwrap()
-      .then(({ token }) => {
-        dispatch(setCsrfToken(token));
-      });
-  }, [getCsrfToken, dispatch]);
-
-  useEffect(() => {
-    if (!token && !user && !searchParams.get('token')) {
-      navigate('/auth/login');
+    if (!token && !user && !searchParams.get("token")) {
+      navigate("/auth/login");
     }
   }, [navigate, token, user, searchParams]);
 
