@@ -34,8 +34,8 @@ A modern URL shortening service built with React, TypeScript, and Vite.
 
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
-   cd url-shortener-fn
+   git clone https://github.com/ALVINdimpos/url-shortener-frontend.git
+   cd url-shortener-frontend
    ```
 
 2. Install dependencies:
