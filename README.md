@@ -114,17 +114,16 @@ The application uses JWT (JSON Web Token) for authentication. Here's how it work
    - Body: 
      ```json
      {
-       "originalUrl": "https://example.com",
-       "customAlias": "custom" // optional
+       "long_url": "https://example.com",
      }
      ```
    - Response:
      ```json
      {
-       "shortUrl": "http://short.url/abc123",
-       "originalUrl": "https://example.com",
+       "short_url": "http://short.url/abc123",
+       "long_url": "https://example.com",
        "clicks": 0,
-       "createdAt": "2024-03-09T..."
+       "created_at": "2024-03-09T..."
      }
      ```
 
@@ -134,14 +133,10 @@ The application uses JWT (JSON Web Token) for authentication. Here's how it work
    - Response:
      ```json
      {
-       "shortUrl": "http://short.url/abc123",
-       "originalUrl": "https://example.com",
+       "short_url": "http://short.url/abc123",
+       "long_url": "https://example.com",
        "clicks": 42,
-       "analytics": {
-         "browsers": {...},
-         "devices": {...},
-         "locations": {...}
-       }
+       "created_at": "2024-03-09T..."
      }
      ```
 
