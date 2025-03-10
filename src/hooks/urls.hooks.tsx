@@ -2,22 +2,28 @@ import {
   useLazyFetchUrlsQuery,
   useLazyGetUrlQuery,
   useLazyGetUrlStatsQuery,
-} from '@/states/api/apiQuerySlice';
-import { usePagination } from './pagination.hooks';
-import { useEffect, useMemo } from 'react';
-import { ColumnDef } from '@tanstack/react-table';
-import { IUrl } from '@/types';
-import { AppDispatch, RootState } from '@/states/store';
-import { useDispatch, useSelector } from 'react-redux';
-import { setDeleteUrlModal, setSelectedUrl, setUpdateUrl, setUrl, setUrlsList } from '@/states/features/urlSlice';
-import { formatDate } from '@/helpers/strings.helper';
-import CustomTooltip from '@/components/inputs/CustomTooltip';
-import { Link } from 'react-router-dom';
-import { baseUrl } from '@/constants/environments.constants';
-import { faEllipsisH, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
-import CustomPopover from '@/components/inputs/CustomPopover';
+} from "@/states/api/apiQuerySlice";
+import { usePagination } from "./pagination.hooks";
+import { useEffect, useMemo } from "react";
+import { ColumnDef } from "@tanstack/react-table";
+import { IUrl } from "@/types";
+import { AppDispatch, RootState } from "@/states/store";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setDeleteUrlModal,
+  setSelectedUrl,
+  setUpdateUrl,
+  setUrl,
+  setUrlsList,
+} from "@/states/features/urlSlice";
+import { formatDate } from "@/helpers/strings.helper";
+import CustomTooltip from "@/components/inputs/CustomTooltip";
+import { Link } from "react-router-dom";
+import { baseUrl } from "@/constants/environments.constants";
+import { faEllipsisH, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleInfo } from "@fortawesome/free-solid-svg-icons";
+import CustomPopover from "@/components/inputs/CustomPopover";
 
 // FETCH URLS
 export const useFetchUrls = () => {
@@ -41,6 +47,8 @@ export const useFetchUrls = () => {
 
   // INITIALIZE FETCH URLS
   const [fetchUrls, { isFetching: urlsIsFetching }] = useLazyFetchUrlsQuery();
+
+  console.log(fetchUrls);
 
   useEffect(() => {
     if (!deleteUrlModal && !createUrlModal) {
@@ -82,15 +90,15 @@ export const useUrlsColumns = () => {
   const urlsColumns: ColumnDef<IUrl>[] = useMemo(
     () => [
       {
-        id: 'no',
-        header: 'No.',
-        accessorKey: 'no',
+        id: "no",
+        header: "No.",
+        accessorKey: "no",
         cell: ({ row }) => row?.index + 1,
       },
       {
-        id: 'short_code',
-        header: 'Short Code',
-        accessorKey: 'short_code',
+        id: "short_code",
+        header: "Short Code",
+        accessorKey: "short_code",
         cell: ({ row }) => (
           <CustomTooltip label="Click to visit">
             <Link
@@ -108,7 +116,7 @@ export const useUrlsColumns = () => {
                 );
                 window.open(
                   `${baseUrl}/link/${row?.original?.short_code}`,
-                  '_blank'
+                  "_blank"
                 );
               }}
             >
@@ -118,38 +126,38 @@ export const useUrlsColumns = () => {
         ),
       },
       {
-        id: 'long_url',
-        header: 'Long URL',
-        accessorKey: 'long_url',
+        id: "long_url",
+        header: "Long URL",
+        accessorKey: "long_url",
         cell: ({ row }) =>
           row?.original?.long_url?.length > 40
             ? `${row?.original?.long_url?.substring(0, 50)}...`
             : row?.original?.long_url,
       },
       {
-        id: 'clicks',
-        header: 'Clicks',
-        accessorKey: 'clicks',
+        id: "clicks",
+        header: "Clicks",
+        accessorKey: "clicks",
         cell: ({ row }) => row?.original?.clicks,
       },
       {
-        id: 'created_at',
-        header: 'Date added',
-        accessorKey: 'created_at',
+        id: "created_at",
+        header: "Date added",
+        accessorKey: "created_at",
         cell: ({ row }) =>
-          formatDate(row?.original?.createdAt, 'MMM DD, YYYY hh:mm A'),
+          formatDate(row?.original?.createdAt, "MMM DD, YYYY hh:mm A"),
       },
       {
-        id: 'updated_at',
-        header: 'Last updated',
-        accessorKey: 'updated_at',
+        id: "updated_at",
+        header: "Last updated",
+        accessorKey: "updated_at",
         cell: ({ row }) =>
-          formatDate(row?.original?.updatedAt, 'MMM DD, YYYY hh:mm A'),
+          formatDate(row?.original?.updatedAt, "MMM DD, YYYY hh:mm A"),
       },
       {
-        id: 'actions',
-        header: 'Actions',
-        accessorKey: 'actions',
+        id: "actions",
+        header: "Actions",
+        accessorKey: "actions",
         cell: ({ row }) => {
           return (
             <CustomPopover
@@ -220,11 +228,11 @@ export const useGetUrl = ({ shortCode }: { shortCode: string }) => {
 
 // GET URL STATS
 export const useGetUrlStats = ({ shortCode }: { shortCode: string }) => {
-    
   // STATE VARIABLES
   const dispatch: AppDispatch = useDispatch();
 
-  const [getUrlStats, { isFetching: urlStatsIsFetching }] = useLazyGetUrlStatsQuery();
+  const [getUrlStats, { isFetching: urlStatsIsFetching }] =
+    useLazyGetUrlStatsQuery();
 
   useEffect(() => {
     if (shortCode) {
@@ -237,6 +245,6 @@ export const useGetUrlStats = ({ shortCode }: { shortCode: string }) => {
   }, [dispatch, getUrlStats, shortCode]);
 
   return {
-    urlStatsIsFetching
-  }
+    urlStatsIsFetching,
+  };
 };

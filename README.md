@@ -140,14 +140,19 @@ The application uses JWT (JSON Web Token) for authentication. Here's how it work
      }
      ```
 
-## 🧪 Testing
+## Screenshots
 
-```bash
-npm run test
-# or
-yarn test
-```
+![URL List](./public/screenshots/Screenshot%202025-03-10%20at%2012.32.04 PM.png)
+![URL List](./public/screenshots//Screenshot%202025-03-10%20at%2012.32.24 PM.png)
+![URL List](./public/screenshots/Screenshot%202025-03-10%20at%2012.32.15 PM.png)
+![URL Statistics](./public/screenshots/Screenshot%202025-03-10%20at%2012.31.17 PM.png)
+![URL List](./public/screenshots/Screenshot%202025-03-10%20at%2012.31.27 PM.png)
+![URL List](./public/screenshots/Screenshot%202025-03-10%20at%2012.31.36 PM.png)
+![URL List](./public/screenshots/Screenshot%202025-03-10%20at%2012.31.44 PM.png)
 
-## 📝 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+
+
+
+

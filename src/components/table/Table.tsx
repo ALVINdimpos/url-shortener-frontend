@@ -11,7 +11,7 @@ import {
   getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
-} from '@tanstack/react-table';
+} from "@tanstack/react-table";
 
 import {
   Table as DataTable,
@@ -20,11 +20,11 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table';
+} from "@/components/ui/table";
 
-import { DataTablePagination } from '@/components/table/TablePagination';
-import { useState } from 'react';
-import { UnknownAction } from '@reduxjs/toolkit';
+import { DataTablePagination } from "@/components/table/TablePagination";
+import { useState } from "react";
+import { UnknownAction } from "@reduxjs/toolkit";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -55,13 +55,13 @@ export default function Table<TData, TValue>({
   setPage,
   setSize,
   isLoading = false,
-  noDataMessage = 'No results.',
+  noDataMessage = "No results.",
 }: DataTableProps<TData, TValue>) {
   const [rowSelection, setRowSelection] = useState({});
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [sorting, setSorting] = useState<SortingState>([]);
-
+  console.log(data);
   const table = useReactTable({
     data,
     columns,
@@ -126,7 +126,7 @@ export default function Table<TData, TValue>({
                         className={`animate-pulse bg-gray-200 rounded-[4px]`}
                         style={{
                           width: `${Math.random() * (70 - 50) + 50}%`,
-                          height: '0.75rem',
+                          height: "0.75rem",
                         }}
                       />
                     </TableCell>
@@ -137,9 +137,9 @@ export default function Table<TData, TValue>({
               table.getRowModel().rows.map((row) => (
                 <TableRow
                   key={row.id}
-                  data-state={row.getIsSelected() && 'selected'}
+                  data-state={row.getIsSelected() && "selected"}
                   className={`p-2 ${
-                    rowClickHandler ? 'cursor-pointer' : ''
+                    rowClickHandler ? "cursor-pointer" : ""
                   } hover:bg-background`}
                   onClick={(e) => {
                     e.preventDefault();
@@ -147,10 +147,10 @@ export default function Table<TData, TValue>({
                 >
                   {row.getVisibleCells().map((cell) => {
                     const preventAction = [
-                      'no',
-                      'action',
-                      'checkbox',
-                      'actions',
+                      "no",
+                      "action",
+                      "checkbox",
+                      "actions",
                     ].includes(
                       cell.column.id ||
                         (cell as unknown as { column: { accessorKey: string } })
@@ -159,7 +159,7 @@ export default function Table<TData, TValue>({
                     return (
                       <TableCell
                         className={`${
-                          preventAction ? '!cursor-auto' : ''
+                          preventAction ? "!cursor-auto" : ""
                         } !text-[15px] p-4`}
                         key={cell.id}
                         onClick={(e) => {

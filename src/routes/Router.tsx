@@ -21,7 +21,7 @@ const Router = () => {
           <Route path="" element={<ManageUrls />} />
           <Route path=":shortCode" element={<UrlStats />} />
         </Route>
-        <Route path='/link/:shortCode' element={<VisitUrl />} />
+        <Route path="/link/:shortCode" element={<VisitUrl />} />
       </Route>
       <Route path="*" element={<FallbackRoutes />} />
     </Routes>
