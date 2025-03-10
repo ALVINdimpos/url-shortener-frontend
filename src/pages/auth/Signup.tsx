@@ -1,17 +1,17 @@
-import { Link, useNavigate } from 'react-router-dom';
-import { Controller, useForm } from 'react-hook-form';
-import Input from '@/components/inputs/Input';
-import { InputErrorMessage } from '@/components/inputs/ErrorLabels';
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import { useEffect, useState } from 'react';
-import Button from '@/components/inputs/Button';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGoogle } from '@fortawesome/free-brands-svg-icons';
-import { Heading } from '@/components/inputs/TextInputs';
-import { useSignupMutation } from '@/states/api/apiSlice';
-import validateInputs from '@/helpers/validations.helper';
-import PublicNavbar from '@/containers/navigation/PublicNavbar';
-import { localApiUrl } from '@/constants/environments.constants';
+import { Link, useNavigate } from "react-router-dom";
+import { Controller, useForm } from "react-hook-form";
+import Input from "@/components/inputs/Input";
+import { InputErrorMessage } from "@/components/inputs/ErrorLabels";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { useEffect, useState } from "react";
+import Button from "@/components/inputs/Button";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGithub, faGoogle } from "@fortawesome/free-brands-svg-icons";
+import { Heading } from "@/components/inputs/TextInputs";
+import { useSignupMutation } from "@/states/api/apiSlice";
+import validateInputs from "@/helpers/validations.helper";
+import PublicNavbar from "@/containers/navigation/PublicNavbar";
+import { localApiUrl } from "@/constants/environments.constants";
 
 const Signup = () => {
   // STATE VARIABLES
@@ -52,12 +52,12 @@ const Signup = () => {
   useEffect(() => {
     if (signupIsSuccess) {
       reset({
-        email: '',
-        password: '',
-        username: '',
+        email: "",
+        password: "",
+        username: "",
       });
       signupReset();
-      navigate('/auth/login');
+      navigate("/auth/login");
     }
   }, [reset, signupData, signupIsSuccess, signupReset, navigate]);
 
@@ -70,7 +70,7 @@ const Signup = () => {
             Create your account
           </Heading>
           <p className="text-gray-600 mb-8">
-            Already have an account?{' '}
+            Already have an account?{" "}
             <Link to="/auth/login" className="text-primary hover:underline">
               Log in
             </Link>
@@ -93,6 +93,20 @@ const Signup = () => {
                   <FontAwesomeIcon icon={faGoogle} className="w-5 h-5" />
                   Continue with Google
                 </>
+              </Link>
+              <Link
+                to="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  const redirect_url = `${window.location.origin}/urls`;
+                  window.location.href = `${localApiUrl}/auth/users/github?redirect_url=${encodeURIComponent(
+                    redirect_url
+                  )}`;
+                }}
+                className="w-full flex items-center justify-center gap-2 border rounded-md py-2 hover:bg-primary hover:text-white transition"
+              >
+                <FontAwesomeIcon icon={faGithub} className="w-5 h-5" />
+                Continue with GitHub
               </Link>
             </menu>
 
@@ -128,8 +142,8 @@ const Signup = () => {
                 rules={{
                   required: `Please enter a valid email address`,
                   validate: (value) =>
-                    validateInputs(value, 'email') ||
-                    'Please enter a valid email address',
+                    validateInputs(value, "email") ||
+                    "Please enter a valid email address",
                 }}
                 render={({ field }) => {
                   return (
@@ -149,12 +163,12 @@ const Signup = () => {
               <Controller
                 name="password"
                 control={control}
-                rules={{ required: 'Please create a password' }}
+                rules={{ required: "Please create a password" }}
                 render={({ field }) => {
                   return (
                     <label className="flex flex-col gap-2">
                       <Input
-                        type={showPassword ? 'text' : 'password'}
+                        type={showPassword ? "text" : "password"}
                         label="Password"
                         required
                         placeholder="Create a strong password"
@@ -182,15 +196,15 @@ const Signup = () => {
             </fieldset>
 
             <footer className="text-xs text-gray-500 mt-8">
-              By creating an account, you agree to our{' '}
+              By creating an account, you agree to our{" "}
               <Link to="#" className="text-primary hover:underline">
                 Terms of Service
               </Link>
-              ,{' '}
+              ,{" "}
               <Link to="#" className="text-primary hover:underline">
                 Privacy Policy
-              </Link>{' '}
-              and{' '}
+              </Link>{" "}
+              and{" "}
               <Link to="#" className="text-primary hover:underline">
                 Acceptable Use Policy
               </Link>
